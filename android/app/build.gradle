@@ -1,0 +1,52 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services' // Add this line
+}
+
+android {
+    namespace = "com.example.fitness"  // Make sure this line is outside of defaultConfig
+    compileSdkVersion 33
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+    
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.fitness"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        targetSdkVersion 33
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        minSdkVersion 26 // Make sure minSdkVersion is correctly set here as well
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:33.6.0') // Import the Firebase BoM
+    implementation 'com.google.firebase:firebase-analytics' // Firebase Analytics
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation("com.google.firebase:firebase-auth")
+    
+    // Add other Firebase products as needed
+}
+
+flutter {
+    source = "../.."
+}
